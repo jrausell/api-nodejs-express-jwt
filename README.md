@@ -1,6 +1,6 @@
 # api-nodejs-express-jwt
 
-This is a simple API using NodeJS, Express and JWT.
+This is a simple API using NodeJS, Express, Typescript and JWT
 
 the api basic 2 endpoints
 
@@ -8,6 +8,12 @@ the api basic 2 endpoints
 - /api/hello
 - /api/profile/:id
 - /api/todo
+
+## Dependencies
+
+```
+npm install express typescript ts-node @types/node @types/express --save-dev
+```
 
 ## endpoints
 

@@ -1,5 +1,3 @@
-const jwt = require("jsonwebtoken");
-
 // protect routes
 // middleware to validate token
 const verifyToken = (req, res, next) => {

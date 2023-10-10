@@ -9,10 +9,9 @@
 // /api/profile/:id recive a GET request with jwt authorization header, and return a JSON with the profile.
 // if the user is not authorized, return a 401 status code
 
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const bodyparser = require("body-parser");
+import express, { Request, Response } from "express";
+import { json, urlencoded } from "body-parser";
+
 require("dotenv").config();
 
 const app = express();
@@ -44,8 +43,8 @@ const users = [
  * MIDDLEWARE
  */
 // get the body
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(bodyparser.json());
+app.use(urlencoded({ extended: false }));
+app.use(json());
 // verify token
 const verifyToken = require("./middleware/verifyToken");
 const getId = require("./routes/profile/middlewareGetId");
