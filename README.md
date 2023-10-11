@@ -1,88 +1,59 @@
-# api-nodejs-express-jwt
+# api-nodejs-express-typescript-jwt
 
-This is a simple API using NodeJS, Express, Typescript and JWT
-
-the api basic 2 endpoints
-
-- /
-- /api/hello
-- /api/profile/:id
-- /api/todo
-
-## Dependencies
+Let's start with the basics. install the dependencies:
 
 ```
-npm install express typescript ts-node @types/node @types/express --save-dev
+npm init
+npm install express typescript ts-node @types/node @types/cors @types/express --save-dev
 ```
 
-## endpoints
+Create a tsconfig.json file with the following content:
 
-### root
-
-A home page
-
-### /api/hello
-
-Open endpoint that will return a simple message
-
-### /api/profile/:id
-
-This is a protected endpoint, will return a profile of a user based on the id passed in the url
-
-### /api/todo
-
-A simple protected CRUD endpoint
-
-# Steps
-
-// create package.json
-npm init -y
-
-// install express
-npm install express --save
-
-// install nodemon, dotenv
-npm i --save-dev nodemon dotenv
-
-// install jsonwebtoken, bcrypt, cors, body-parser
-npm i jsonwebtoken bcrypt cors body-parser
-
-// create .env file
-touch .env
-
-// create index.js
-touch index.js
-
-## How does the routes work
-
-## How to protect the endpoint with JWT
-
-A simple way to protect the endpoint is to use a middleware, this middleware will check if the token is valid and if it is valid it will pass the request to the next middleware.
-
-For this example we will use the express-jwt package and a middleware to check the Authorization header.
-
-### How it works
-
-The client send a request with the user credentials, the server will check if the credentials are valid and if they are valid the server will create a token and send it back to the client.
-
-The client will store the token and send it back to the server in the Authorization header on the next request.
-
-The server will check if the token is valid and if it is valid it will pass the request to the next middleware, do the logic and send the response back to the client.
-
-### How to create the token with jwt
-
-jwt.sign(payload, secretOrPrivateKey, [options, callback])
-
-Result:
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1Njc4OTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1MT
-
-### How to verify the token recived from the client
-
-jwt.verify(token, secretOrPublicKey, [options, callback])
-
-### payload format
-
+```
 {
-id: '1234567890',
-role: 'admin'
+  "compilerOptions": {
+    "target": "es6", // this will compile our code to es6 version of javascript
+    "module": "commonjs", // this will compile our code to commonjs module
+    "outDir": "./dist", // this will be the output directory for our compiled code
+    "strict": true, // this will enable all strict type-checking options
+    "esModuleInterop": true, // this will enable emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and emit CommonJS-spec-compliant export assignments for ES modules
+    "skipLibCheck": true, // this will skip type checking of all declaration files (*.d.ts)
+    "forceConsistentCasingInFileNames": true // this will ensure that casing is correct in imports
+  },
+  "include": ["src/**/*.ts"], // this will include all ts files in src folder
+  "exclude": ["node_modules"] // this will exclude node_modules folder
 }
+```
+
+And add the following scripts to your package.json file:
+
+```
+"scripts": {
+  "start": "ts-node src/index.ts",
+  "build": "tsc",
+  "serve": "node dist/index.js"
+}
+```
+
+Create a src/index.ts file with the following content:
+
+```
+import express, { Request, Response } from "express";
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello, this is our TypeScript Express home page!");
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+```
+
+Now you can run the application with the following command:
+
+```
+npm run start
+```
