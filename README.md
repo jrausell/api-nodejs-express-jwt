@@ -20,7 +20,8 @@ Create a tsconfig.json file with the following content:
     "strict": true, // this will enable all strict type-checking options
     "esModuleInterop": true, // this will enable emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and emit CommonJS-spec-compliant export assignments for ES modules
     "skipLibCheck": true, // this will skip type checking of all declaration files (*.d.ts)
-    "forceConsistentCasingInFileNames": true // this will ensure that casing is correct in imports
+    "forceConsistentCasingInFileNames": true, // this will ensure that casing is correct in imports
+    "resolveJsonModule": true // this will allow us to import JSON modules
   },
   "include": ["src/**/*.ts"], // this will include all ts files in src folder
   "exclude": ["node_modules"] // this will exclude node_modules folder
@@ -69,6 +70,12 @@ npm run start
 ### GET /blog (Blog)
 
 #### GET /blog/:id (Blog Post)
+
+Using a simple html as template with handlebars to render the blog post. fs to read the file and handlebars to render the html.
+
+```
+npm install handlebars --save
+```
 
 ### CRUD /todo (To-Do)
 

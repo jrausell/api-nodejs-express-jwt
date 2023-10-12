@@ -1,6 +1,9 @@
 import { Router, Request, Response } from "express";
+import * as Handlebars from "handlebars";
+import * as fs from "fs";
+import * as path from "path";
 
-// import the posts array from posts.js
+// import the posts array from posts.json
 import { posts } from "./posts";
 
 const router = Router();
@@ -16,12 +19,26 @@ type Post = {
  * /blog/[slug]
  * Do not forget to validate the slug to avoid path traversal attacks
  */
-// Blog home
+
+/**
+ * Blog home
+ */
 router.get("/", (req: Request, res: Response) => {
-  res.send("...");
+  const templatePath = path.join(__dirname, "home.html");
+  const template = fs.readFileSync(templatePath, "utf-8");
+  res.send(template);
 });
 
-// Blog Post
+/**
+ *  Blog Post
+ */
+// Read the template file
+const templatePath = path.join(__dirname, "post.html");
+const template = fs.readFileSync(templatePath, "utf-8");
+
+// Compile the template
+const compiledTemplate = Handlebars.compile(template);
+
 router.get("/:slug", (req: Request, res: Response) => {
   // const {slug}:{slug:string} = req?.params;
   const slug = req?.params?.slug as string;
@@ -33,8 +50,18 @@ router.get("/:slug", (req: Request, res: Response) => {
   // Find the post. We will use an array with some fake posts
   const thePost = posts.find((post: Post) => post.slug === slug);
 
+  if (!thePost) {
+    res.status(404).send("Post not found");
+  }
+
+  // Render the template with your variables
+  const renderedTemplate = compiledTemplate({
+    title: thePost?.title,
+    content: thePost?.content,
+  });
+
   // return the post
-  res.send("...");
+  res.send(renderedTemplate);
 });
 
 // This Blog will not have the CRUD logic, that will be in the To-Do API
