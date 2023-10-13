@@ -2,7 +2,14 @@ import { Router, Request, Response } from "express";
 import { Task } from "./types";
 
 const router = Router();
-let tasks: Task[] = [];
+let tasks: Task[] = [
+  {
+    id: 1,
+    title: "Task 1",
+    description: "Lorem ipsum dolor sit amet",
+    completed: false,
+  },
+];
 
 // Add your CRUD API implementation here
 

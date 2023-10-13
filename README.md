@@ -118,7 +118,7 @@ Install JWT and bcrypt:
 
 ```
 npm install jsonwebtoken bcrypt
-npm i --save-dev @types/jsonwebtoken
+npm i --save-dev @types/jsonwebtoken  @types/bcrypt
 ```
 
 Add the following code to your src/index.ts file:

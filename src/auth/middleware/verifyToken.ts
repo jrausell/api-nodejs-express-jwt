@@ -14,6 +14,8 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
+  next();
+
   // check if the header has the token
   const token = req.header("Authorization");
   if (!token) return res.status(401).json({ error: "Access Denied" });
@@ -33,4 +35,4 @@ export const verifyToken = (
   }
 };
 
-module.exports = verifyToken;
+//module.exports = verifyToken;

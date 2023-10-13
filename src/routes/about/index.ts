@@ -14,8 +14,26 @@ router.get("/", (req: Request, res: Response) => {
   <p>Check other endpoints:</p>
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/api/todo">To-Do</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="#api">To-Do (API. New Authorization Token)</a></li>
   </ul>
+
+  <h2 id="api">API</h2>
+  <p>A simple API to test JWT token authorization.</p>
+  <p>Endpoints:</p>
+  <ul>
+    <li>GET /api/todo (return Tasks)</li>
+    <li>POST /api/todo (create a new Task)</li>
+    <li>GET /api/todo/:id (return a Task)</li>
+    <li>PUT /api/todo/:id (update a Task)</li>
+    <li>DELETE /api/todo/:id (delete a Task)</li>
+  </ul>
+
+
+  <h3>Authorization</h3>
+  <p>To use the API, you need to send a token in the Authorization header.</p>
+  <p>Get your valid token from the login:</p>
+  <pre>eyJhbGciOiJIUzI1...K5Y1z9J5J8yjDQ</pre>
 `);
 });
 
