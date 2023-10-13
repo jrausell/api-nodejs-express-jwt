@@ -118,6 +118,7 @@ Install JWT and bcrypt:
 
 ```
 npm install jsonwebtoken bcrypt
+npm i --save-dev @types/jsonwebtoken
 ```
 
 Add the following code to your src/index.ts file:
@@ -301,4 +302,53 @@ app.post(
     res.send("User created!");
   }
 );
+```
+
+## 8. Add @/\* aliases
+
+Install @/\* aliases:
+
+```
+npm install @types/node
+```
+
+Add the following code to your tsconfig.json file:
+
+```
+"baseUrl": "./src",
+"paths": {
+  "@/*": ["*"]
+}
+```
+
+## 9. Add prettier
+
+Install prettier:
+
+```
+npm install prettier
+```
+
+Add the following script to your package.json file:
+
+```
+"scripts": {
+  "format": "prettier --write \"src/**/*.ts\""
+}
+```
+
+## 10. Add eslint
+
+Install eslint:
+
+```
+npm install eslint --save-dev
+```
+
+Add the following script to your package.json file:
+
+```
+"scripts": {
+  "lint": "eslint \"src/**/*.ts\""
+}
 ```
