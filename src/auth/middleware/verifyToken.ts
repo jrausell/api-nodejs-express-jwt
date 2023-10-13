@@ -14,16 +14,16 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
-  next();
-
   // check if the header has the token
   const token = req.header("Authorization");
   if (!token) return res.status(401).json({ error: "Access Denied" });
 
   try {
     // verify token
-    const token = env.TOKEN_SECRET as string;
-    const verified = jwt.verify(token, token);
+    const secret_token = env.TOKEN_SECRET as string;
+    const verified = jwt.verify(token, secret_token);
+
+    if (!verified) return res.status(401).json({ error: "Invalid Token" });
 
     // because we are using TS, adding verified propertie will gives a type error "verified does not exist on type Request". To fix this, we need to extend the Request interface
     req.verified = verified;
